@@ -94,7 +94,7 @@ export const useSignUp = () => {
       lastName: string;
     }) => {
       return axios.post(
-        `http://localhost:8000/api/auth/signup`,
+        `${import.meta.env.VITE_API_URL}/api/auth/signup`,
         {
           email: signupDetails.email,
           username: signupDetails.username,
