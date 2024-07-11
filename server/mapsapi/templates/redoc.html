@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>API Documentation</title>
+    <style>
+      /* Add your custom styles here */
+      body {
+        font-family: "Times New Roman", Times, serif;
+        margin: 20px;
+        line-height: 1.6;
+      }
+      .redoc-container {
+        max-width: 900px;
+        margin: auto;
+      }
+      .redoc-section-title {
+        font-size: 44px;
+        font-weight: bold;
+      }
+      /* More custom styles as needed */
+    </style>
+  </head>
+  <body>
+    <redoc spec-url="{% url 'schema' %}"></redoc>
+    <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: dev.Dockerfile
+    ports:
+      - "4343:4343"
+    restart: always
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - VITE_MAPS_API_KEY=${VITE_MAPS_API_KEY}
+      - VITE_API_URL=${VITE_API_URL}
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - db
+      - server
+
+  server:
+    container_name: server
+    build:
+      context: ./server
+      target: dev
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_DEBUG=True
+      - DJANGO_ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+    volumes:
+      - ./server:/app
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:13
+    volumes:
+      - postgres:/data/postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /data/postgres
+
+volumes:
+  postgres:
