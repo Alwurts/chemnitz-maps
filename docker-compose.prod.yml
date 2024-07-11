@@ -34,8 +34,6 @@ services:
       - POSTGRES_PORT=5432
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_DEBUG=True
-    volumes:
-      - ./server:/app
     depends_on:
       - db
 

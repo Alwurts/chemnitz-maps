@@ -3,11 +3,6 @@
 Submitted as requirement
 for the class, Datenbanken und Web-Techniken
 
-- Alejandro Wurts Santos
-  - Web Engineering Master Student
-  - Matriculation: 806215
-- Technische Universität Chemnitz, Chemnitz, Deutschland
-
 ## Running the client
 
 The client is a TypeScript application created with React and Vite. To run the client, you need to have [Node.js 18](https://nodejs.org/en/download/package-manager) or higher installed on your machine.
