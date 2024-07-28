@@ -112,7 +112,7 @@ function App() {
           <div className="fixed bottom-0 left-0 z-30">
             <SourceLink />
           </div>
-          <div className="fixed bottom-7 right-5 z-30 space-x-2 lg:bottom-10 lg:right-12">
+          <div className="fixed bottom-24 sm:bottom-14 md:bottom-10 right-5 z-30 space-x-2 lg:bottom-10 lg:right-12">
             {!directions && (
               <>
                 <Link

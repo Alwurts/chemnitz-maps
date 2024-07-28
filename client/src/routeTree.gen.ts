@@ -17,27 +17,59 @@ import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
 
+const TermsOfServiceLazyImport = createFileRoute('/terms-of-service')()
 const SignupLazyImport = createFileRoute('/signup')()
+const PrivacyPolicyLazyImport = createFileRoute('/privacy-policy')()
 const LoginLazyImport = createFileRoute('/login')()
-const AboutLazyImport = createFileRoute('/about')()
+const ImprintLazyImport = createFileRoute('/imprint')()
+const DataInformationLazyImport = createFileRoute('/data-information')()
+const DataAttributionLazyImport = createFileRoute('/data-attribution')()
 const AuthPasswordLazyImport = createFileRoute('/auth/password')()
 
 // Create/Update Routes
+
+const TermsOfServiceLazyRoute = TermsOfServiceLazyImport.update({
+  path: '/terms-of-service',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/terms-of-service.lazy').then((d) => d.Route),
+)
 
 const SignupLazyRoute = SignupLazyImport.update({
   path: '/signup',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/signup.lazy').then((d) => d.Route))
 
+const PrivacyPolicyLazyRoute = PrivacyPolicyLazyImport.update({
+  path: '/privacy-policy',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/privacy-policy.lazy').then((d) => d.Route),
+)
+
 const LoginLazyRoute = LoginLazyImport.update({
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const ImprintLazyRoute = ImprintLazyImport.update({
+  path: '/imprint',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/imprint.lazy').then((d) => d.Route))
+
+const DataInformationLazyRoute = DataInformationLazyImport.update({
+  path: '/data-information',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/data-information.lazy').then((d) => d.Route),
+)
+
+const DataAttributionLazyRoute = DataAttributionLazyImport.update({
+  path: '/data-attribution',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/data-attribution.lazy').then((d) => d.Route),
+)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -60,11 +92,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
+    '/data-attribution': {
+      id: '/data-attribution'
+      path: '/data-attribution'
+      fullPath: '/data-attribution'
+      preLoaderRoute: typeof DataAttributionLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/data-information': {
+      id: '/data-information'
+      path: '/data-information'
+      fullPath: '/data-information'
+      preLoaderRoute: typeof DataInformationLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/imprint': {
+      id: '/imprint'
+      path: '/imprint'
+      fullPath: '/imprint'
+      preLoaderRoute: typeof ImprintLazyImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -74,11 +120,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginLazyImport
       parentRoute: typeof rootRoute
     }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/signup': {
       id: '/signup'
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof SignupLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/terms-of-service': {
+      id: '/terms-of-service'
+      path: '/terms-of-service'
+      fullPath: '/terms-of-service'
+      preLoaderRoute: typeof TermsOfServiceLazyImport
       parentRoute: typeof rootRoute
     }
     '/auth/password': {
@@ -95,9 +155,13 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AboutLazyRoute,
+  DataAttributionLazyRoute,
+  DataInformationLazyRoute,
+  ImprintLazyRoute,
   LoginLazyRoute,
+  PrivacyPolicyLazyRoute,
   SignupLazyRoute,
+  TermsOfServiceLazyRoute,
   AuthPasswordLazyRoute,
 })
 
