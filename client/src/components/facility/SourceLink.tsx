@@ -1,4 +1,3 @@
-import { badgeVariants } from "@/components/ui/badge";
 import { Link } from "@tanstack/react-router";
 import { Separator } from "../ui/separator";
 

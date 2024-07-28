@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 import { useGetFacilities } from "@/services/facilities";
-import { Facilities, Facility, FacilityType } from "@/types/models";
+import type { Facilities, Facility, FacilityType } from "@/types/models";
 import { Link, createLazyFileRoute, getRouteApi } from "@tanstack/react-router";
 
 import { getLocationsWithinRadius } from "@/lib/location";
@@ -49,11 +49,11 @@ function App() {
     const tempData: Facilities = JSON.parse(JSON.stringify(facilities.data));
 
     if (filters.facilityTypes) {
-      Object.keys(tempData).forEach((facilityType) => {
+      for (const facilityType of Object.keys(tempData)) {
         if (!filters.facilityTypes?.includes(facilityType as FacilityType)) {
           tempData[facilityType as FacilityType] = [];
         }
-      });
+      }
     }
 
     let flattenedData = Object.values(tempData).flat();
