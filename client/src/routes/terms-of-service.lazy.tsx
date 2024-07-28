@@ -14,7 +14,7 @@ export function TermsOfService() {
 				<p>
 					These Terms of Service govern your use of the Chemnitz Maps web
 					application ("the Service"), an educational project developed by
-					Alejandro Wurts Santos at Technische Universität Chemnitz. By using
+					Alejandro Wurts Santos. By using
 					the Service, you agree to these terms.
 				</p>
 			</section>
@@ -129,11 +129,7 @@ export function TermsOfService() {
 				<h2 className="text-xl font-semibold mb-2">11. Contact Information</h2>
 				<p>For any questions about these Terms of Service, please contact:</p>
 				<p>Alejandro Wurts Santos</p>
-				<p>Email: [Your educational email address]</p>
-				<p>
-					Address: Technische Universität Chemnitz, Straße der Nationen 62,
-					09111 Chemnitz, Germany
-				</p>
+				<p>Email: alejandrowurts@gmail.com</p>
 			</section>
 		</div>
 	);
